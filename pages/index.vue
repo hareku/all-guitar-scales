@@ -16,7 +16,9 @@ import { Pitches } from '~/lib/pitch'
 import type { Scale, ScaleType } from '~/lib/scale'
 import { ScaleTypes } from '~/lib/scale'
 
-const selectedKeyPitchName = ref<Pitch['name']>('C')
+const selectedKeyPitchName = useCookie<Pitch['name']>('selectedKeyPitchName', {
+  default: () => 'C',
+})
 const selectedKeyPitch = computed(() => {
   const keyPitch = Pitches.find((p) => p.name === selectedKeyPitchName.value)
   if (!keyPitch) {
@@ -25,7 +27,9 @@ const selectedKeyPitch = computed(() => {
   return keyPitch
 })
 
-const selectedScaleTypeName = ref<ScaleType['name']>('MajorScale')
+const selectedScaleTypeName = useCookie<ScaleType['name']>('selectedScaleTypeName', {
+  default: () => 'MajorScale',
+})
 const selectedScaleType = computed<ScaleType>(() => {
   const scaleType = ScaleTypes.find((s) => s.name === selectedScaleTypeName.value)
   if (!scaleType) {
