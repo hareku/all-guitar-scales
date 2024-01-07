@@ -1,9 +1,12 @@
 <template>
-  <div class="fret-board-container">
-    <div>
+  <div class="container">
+    <div class="container__items">
       <div class="selectors">
         <KeySelect v-model="selectedKeyPitchName" />
         <ScaleTypeSelect v-model="selectedScaleTypeName" />
+      </div>
+      <div class="scale-table-container">
+        <ScaleTable :scale="scale" />
       </div>
       <FretBoard :scale="scale" />
     </div>
@@ -47,13 +50,24 @@ const scale = computed<Scale>(() => {
 </script>
 
 <style scoped>
-.fret-board-container {
+.container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
+.container__items {
+  > * {
+    margin: 0.5rem auto;
+  }
+}
+
 .selectors {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.scale-table-container {
   display: flex;
   justify-content: center;
   align-items: center;
