@@ -17,7 +17,7 @@
 
 <script setup lang="ts">
 import type { Scale } from '~/lib/scale'
-import { resolveScalePitches, resolveFretPitch } from '~/lib/pitch'
+import { resolveScalePitches } from '~/lib/pitch'
 
 const props = defineProps<{
   scale: Scale
