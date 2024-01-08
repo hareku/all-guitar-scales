@@ -18,9 +18,11 @@ import type { Pitch } from '~/lib/pitch'
 import { Pitches } from '~/lib/pitch'
 import type { Scale, ScaleType } from '~/lib/scale'
 import { ScaleTypes } from '~/lib/scale'
+const cookieMaxAge = 60 * 60 * 24 * 365
 
 const selectedKeyPitchName = useCookie<Pitch['name']>('selectedKeyPitchName', {
   default: () => 'C',
+  maxAge: cookieMaxAge,
 })
 const selectedKeyPitch = computed(() => {
   const keyPitch = Pitches.find((p) => p.name === selectedKeyPitchName.value)
@@ -32,6 +34,7 @@ const selectedKeyPitch = computed(() => {
 
 const selectedScaleTypeName = useCookie<ScaleType['name']>('selectedScaleTypeName', {
   default: () => 'MajorScale',
+  maxAge: cookieMaxAge,
 })
 const selectedScaleType = computed<ScaleType>(() => {
   const scaleType = ScaleTypes.find((s) => s.name === selectedScaleTypeName.value)
