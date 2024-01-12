@@ -9,7 +9,7 @@
     <tr>
       <th>Pitch</th>
       <td v-for="p in scalePitches" :key="p.name">
-        {{ p.name }}
+        {{ p.flatName || p.name }}
       </td>
     </tr>
   </table>
