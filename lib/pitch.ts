@@ -1,5 +1,6 @@
 import type { Interval } from "./interval"
 import type { Scale } from "./scale"
+import type { Chord } from "./chord"
 import type { GuitarString } from "./string"
 
 export interface Pitch {
@@ -39,4 +40,8 @@ export const resolveFretPitch = (string: GuitarString, fret: number): Pitch => {
 export const resolveScalePitches = (scale: Scale): Pitch[] => {
   const { type, rootPitch } = scale
   return type.intervals.map(interval => resolveIntervalPitch(interval, rootPitch))
+}
+
+export const resolveChordPitches = (chord: Chord, root: Pitch): Pitch[] => {
+  return chord.intervals.map(interval => resolveIntervalPitch(interval, root))
 }

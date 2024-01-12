@@ -13,8 +13,10 @@ import {
   Interval_M7,
 } from './interval'
 
+export type ScaleTypeNames = 'MajorScale' | 'MinorScale' | 'MajorPentatonicScale' | 'MinorPentatonicScale'
+
 export interface ScaleType {
-  name: string
+  name: ScaleTypeNames
   intervals: Interval[]
 }
 

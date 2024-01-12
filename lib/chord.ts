@@ -15,7 +15,7 @@ export interface Chord {
 }
 
 export const MajorSeventhChord: Chord = {
-  name: 'Maj7',
+  name: 'Δ7',
   intervals: [
     Interval_P1,
     Interval_M3,
@@ -51,7 +51,7 @@ export const MinorSeventhFlatFiveChord: Chord = {
   ]
 }
 
-export const DiatonicChords: Chord[] = [
+export const MajorDiatonicChords: Chord[] = [
   MajorSeventhChord,
   MinorSeventhChord,
   MinorSeventhChord,
