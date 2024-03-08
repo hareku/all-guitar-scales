@@ -9,13 +9,16 @@
     <tr>
       <th>Pitch</th>
       <td v-for="p in scalePitches" :key="p.name">
-        {{ p.flatName || p.name }}
+        {{ shouldUseFlatName ? (p.flatName || p.name) : p.name }}
       </td>
     </tr>
 
     <template v-if="showChords">
+      <th v-for="p in scalePitches" :key="p.name">
+        {{ shouldUseFlatName ? (p.flatName || p.name) : p.name }}
+      </th>
+    
       <tr v-for="(chord, pitchIndexOfChordRoot) in chords" :key="chord.name">
-        <th>{{ scalePitches[pitchIndexOfChordRoot].flatName || scalePitches[pitchIndexOfChordRoot].name }}{{ chord.name }}</th>
         <td v-for="p in scalePitches" :key="p.name">
           <span v-if="isChordPitch(chord, pitchIndexOfChordRoot, p)">x</span>
         </td>
@@ -38,6 +41,14 @@ const props = defineProps<{
 
 const scalePitches = computed(() => {
   return resolveScalePitches(props.scale)
+})
+
+const shouldUseFlatName = computed(() => {
+  for(let i = 1; i < scalePitches.value.length; i++) {
+    if(scalePitches.value[i].name[0] == scalePitches.value[i - 1].name[0]) {
+      return true
+    }
+  }
 })
 
 const chords = computed<Chord[]>(() => {
